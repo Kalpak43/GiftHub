@@ -7,11 +7,18 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 
 const WalletMultiButton = dynamic(
-  () => import('@solana/wallet-adapter-react-ui').then(mod => mod.WalletMultiButton),
+  () =>
+    import("@solana/wallet-adapter-react-ui").then(
+      (mod) => mod.WalletMultiButton
+    ),
   { ssr: false }
 );
 
 export const AppBar: FC = () => {
+  const MultiButtonStyle = {
+    className: "!bg-purple-600 hover:!bg-purple-700 transition-colors",
+  };
+
   return (
     <motion.header
       className="sticky top-0 z-50 backdrop-blur-md bg-black/30 border-b border-gray-800"
@@ -50,11 +57,11 @@ export const AppBar: FC = () => {
             >
               Contact
             </a>
-            <WalletMultiButton className="!bg-purple-600 hover:!bg-purple-700 transition-colors" />
+            <WalletMultiButton className={MultiButtonStyle.className} />
           </nav>
 
           <div className="md:hidden">
-            <WalletMultiButton className="!bg-purple-600 hover:!bg-purple-700 transition-colors" />
+            <WalletMultiButton className={MultiButtonStyle.className} />
           </div>
         </div>
       </div>
